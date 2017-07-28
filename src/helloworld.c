@@ -15,6 +15,6 @@ int main(int argc, char * argv[]) {
     printf("fin = %d\n", fin);
 
     fflush(stdout);
-
+    
     return 0;
 }

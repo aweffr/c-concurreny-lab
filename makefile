@@ -17,6 +17,15 @@ counter: counter.o
 counter.o:
 	gcc -c -o ${DIR_PKG}/counter.o ${DIR_SRC}/counter.c ${CFLAG}
 
+link_list: link_list.o
+	gcc ${DIR_PKG}/link_list.o -o ${DIR_BIN}/link_list ${CFLAG} 
+
+link_list.o:
+	gcc -c -o ${DIR_PKG}/link_list.o ${DIR_SRC}/link_list.c ${CFLAG}
+
 clean:
 	find ${DIR_PKG} -name '*.o' -exec rm -f {} \;
 	find ${DIR_BIN} -name '*' -exec rm -f {} \;
+
+all:
+	make counter link_list

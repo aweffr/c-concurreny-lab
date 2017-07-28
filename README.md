@@ -1,6 +1,6 @@
 # 记录踩过的坑
 
-## 编译时
+## 设置锁的attr的函数报警告
 为了可重入锁, 用了`pthread_mutexattr_settype`函数, 报Warning:  
 *implicit declaration of function ‘pthread_mutexattr_settype’*
 
@@ -62,3 +62,10 @@ extern int pthread_mutexattr_setprioceiling (pthread_mutexattr_t *__attr, int __
 ```
 
 结论: 要克服这个warning, 就加上`-D_GNU_SOURCE`编译选项. 
+
+## PTHREAD_MUTEX_RECURSIVE 未定义
+解决方法一:
+`#define PTHREAD_MUTEX_RECURSIVE PTHREAD_MUTEX_RECURSIVE_NP`  
+原因:  PTHREAD_MUTEX_RECURSIVE 变量只是 POSIX 说明应该支持的变量，但是很多版本的 Linux 并没有定义此变量
+解决方法二:
+同`pthread_mutexattr_settype`, 加Flag `-D_GNU_SOURCE`

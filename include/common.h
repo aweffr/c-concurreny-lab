@@ -23,10 +23,6 @@
 #undef FALSE
 #endif
 
-#ifndef PTHREAD_MUTEX_RECURSIVE
-#define PTHREAD_MUTEX_RECURSIVE PTHREAD_MUTEX_RECURSIVE_NP
-#endif
-
 typedef enum { FALSE, TRUE } Boolean;
 
 void Pthread_mutex_init(pthread_mutex_t *m)
@@ -69,6 +65,11 @@ void Pthread_create(pthread_t *thread, const pthread_attr_t *attr,
 void Pthread_join(pthread_t thread, void **value_ptr)
 {
     int rc = pthread_join(thread, value_ptr);
+    assert(rc == 0);
+}
+
+void Pthread_mutexattr_init(pthread_mutexattr_t * attr) {
+    int rc = pthread_mutexattr_init(attr);
     assert(rc == 0);
 }
 
