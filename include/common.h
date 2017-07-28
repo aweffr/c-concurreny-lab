@@ -23,7 +23,29 @@
 #undef FALSE
 #endif
 
+#ifndef PTHREAD_MUTEX_RECURSIVE
+#define PTHREAD_MUTEX_RECURSIVE PTHREAD_MUTEX_RECURSIVE_NP
+#endif
+
 typedef enum { FALSE, TRUE } Boolean;
+
+void Pthread_mutex_init(pthread_mutex_t *m)
+{
+    int rc = pthread_mutex_init(m, NULL);
+    assert(rc == 0);
+}
+
+void Pthread_reentrant_mutex_init(pthread_mutex_t *m, pthread_mutexattr_t *attr)
+{
+    int rc =  pthread_mutexattr_init(attr);
+    assert(rc == 0);
+    
+    rc = pthread_mutexattr_settype(attr, PTHREAD_MUTEX_RECURSIVE);
+    assert(rc == 0);
+
+    rc = pthread_mutex_init(m, attr);
+    assert(rc == 0);
+}
 
 void Pthread_mutex_lock(pthread_mutex_t *m)
 {

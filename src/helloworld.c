@@ -1,5 +1,7 @@
 #include <common.h>
 
+// This file is to test makefile and learn how to build simple project.
+
 int main(int argc, char * argv[]) {
     
     printf("Hello Zoule!\n");
