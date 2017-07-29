@@ -9,6 +9,7 @@
         "corecrt.h": "c",
         "vcruntime.h": "c",
         "corecrt_wstdio.h": "c",
-        "types.h": "c"
+        "types.h": "c",
+        "semaphore.h": "c"
     }
 }

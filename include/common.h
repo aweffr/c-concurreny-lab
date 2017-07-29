@@ -73,4 +73,19 @@ void Pthread_mutexattr_init(pthread_mutexattr_t * attr) {
     assert(rc == 0);
 }
 
+void Pthread_cond_broadcast(pthread_cond_t * cond) {
+    int rc = pthread_cond_broadcast(cond);
+    assert(rc == 0);
+}
+
+void Pthread_cond_signal(pthread_cond_t * cond) {
+    int rc = pthread_cond_signal(cond);
+    assert(rc == 0);
+}
+
+void Pthread_cond_wait(pthread_cond_t *cond, pthread_mutex_t * mutex) {
+    int rc = pthread_cond_wait(cond, mutex);
+    assert(rc == 0);
+}
+
 #endif // __COMMON_H__
